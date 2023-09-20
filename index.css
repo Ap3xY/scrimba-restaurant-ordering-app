@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Smythe", cursive;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+.header {
+  padding: 0;
+  background: url("./assets/headerBackground.jpg") no-repeat center/cover;
+  color: #fff;
+  font-weight: bold;
+}
+
+.header h1 {
+  font-size: 40px;
+}
+
+.header p {
+  font-size: 20px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.item-details {
+  display: flex;
+}
+
+#item-container {
+  color: #000;
+  padding-top: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 45px;
+}
+
+.item h3,
+.item-text {
+  margin: 0;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  justify-content: space-evenly;
+}
+
+#item-name,
+#item-price {
+  color: #000;
+}
+
+#item-name {
+  font-size: 28px;
+}
+
+#item-ingredients {
+  color: #8b8b8b;
+  font-size: 16px;
+}
+
+#item-price {
+  font-size: 20px;
+  font-style: normal;
+}
+
+#emoji {
+  font-size: 100px;
+}
+
+#add {
+  font-size: 30px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#order {
+}
