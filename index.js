@@ -1,6 +1,7 @@
 import { menuArray } from "./data.js";
 
 const itemContainer = document.getElementById("item-container");
+const addItem = document.getElementById("add-item");
 
 menuArray.forEach(function (item) {
   itemContainer.innerHTML += `
@@ -13,7 +14,7 @@ menuArray.forEach(function (item) {
         <p id="item-price">$${item.price}</p>
         </div>
         </div>
-        <i id="add" class="fa-solid fa-plus"></i>
+        <i id="add-item" class="fa-solid fa-plus"></i>
     </div>
 `;
 });
