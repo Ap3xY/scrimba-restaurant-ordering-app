@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -19,6 +21,35 @@
     <title>Alex's Diner</title>
   </head>
   <body>
+    <div id="confirmationModal" class="confirmation-modal">
+      <div class="confirmation-content">
+        <h3>Thank You!</h3>
+        <p id="confirmationMessage">Your order is being processed...</p>
+        <button id="closeConfirmation">Close</button>
+      </div>
+    </div>
+
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <h2>Enter Card Details</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Name on Card" required />
+
+        <label for="cardNumber">Card Number:</label>
+        <input
+          type="text"
+          id="cardNumber"
+          placeholder="1234 5678 9012 3456"
+          maxlength="19"
+          required
+        />
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" placeholder="123" maxlength="3" required />
+
+        <button id="payButton">Pay</button>
+      </div>
+    </div>
     <header class="header">
       <div class="header-text">
         <h1>Alex's Diner</h1>
@@ -32,7 +63,7 @@
       <h1>Your Order</h1>
       <div id="order"></div>
       <div id="total"></div>
-      <button>Complete order</button>
+      <button id="completeOrderButton">Complete order</button>
     </footer>
     <script src="data.js" type="module"></script>
     <script src="index.js" type="module"></script>

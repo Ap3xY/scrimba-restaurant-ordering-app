@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Smythe", cursive;
+  background-color: #f5f5f5; /* Added a subtle background color */
 }
 
 h1,
@@ -14,14 +15,17 @@ p {
   background: url("./assets/headerBackground.jpg") no-repeat center/cover;
   color: #fff;
   font-weight: bold;
+  border-bottom: 5px solid #333; /* Added border for separation */
 }
 
 .header h1 {
-  font-size: 40px;
+  font-size: 48px;
+  margin-top: 20px; /* Gave it a top margin */
 }
 
 .header p {
-  font-size: 20px;
+  font-size: 24px;
+  margin-bottom: 20px; /* Gave it a bottom margin */
 }
 
 .header-text {
@@ -38,17 +42,28 @@ p {
 
 #item-container {
   color: #000;
-  padding-top: 35px;
+  padding: 35px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; /* Center the items horizontally */
+  background-color: #ffffff;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 20px;
 }
 
 .item {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: 45px;
+  padding: 25px;
+  width: 80%; /* Set width */
+  border-bottom: 2px solid #ebebeb; /* Added border for separation */
+}
+
+.item:last-child {
+  border-bottom: none; /* Remove border for the last item */
 }
 
 .item h3,
@@ -59,42 +74,184 @@ p {
 .item-text {
   display: flex;
   flex-direction: column;
-  width: 200px;
   justify-content: space-evenly;
 }
 
-#item-name,
-#item-price {
+.item-name,
+.item-price {
   color: #000;
 }
 
-#item-name {
-  font-size: 28px;
+.item-name {
+  font-size: 32px;
+  font-weight: bold; /* Made it bold */
 }
 
-#item-ingredients {
+.item-ingredients {
   color: #8b8b8b;
-  font-size: 16px;
+  font-size: 18px;
 }
 
-#item-price {
-  font-size: 20px;
-  font-style: normal;
+.item-price {
+  font-size: 24px;
 }
 
-#emoji {
+.emoji {
   font-size: 100px;
 }
 
-#add-item {
-  font-size: 30px;
+.add-item {
+  font-size: 32px;
+  cursor: pointer;
+  transition: color 0.3s; /* Transition effect for hover */
+}
+
+.add-item:hover {
+  color: #007bff; /* Change color on hover */
 }
 
 footer {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 20px 0;
+  background-color: #333;
+  color: #ffffff;
 }
 
-#order {
+footer h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Transition effect for hover */
+  width: 475.911px;
+  height: 71.304px;
+  flex-shrink: 0;
+  background: #16db99;
+  color: var(--white, #fff);
+  font-family: Verdana, sans-serif; /* Providing a fallback font */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 31.119px; /* 155.596% */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles for medium-sized devices (e.g., tablets) */
+@media (max-width: 768px) {
+  button {
+    width: 80%; /* Adjust to 80% width for medium-sized screens */
+    height: auto; /* Let the height adjust based on the content and padding */
+  }
+}
+
+/* Responsive styles for small-sized devices (e.g., mobile phones) */
+@media (max-width: 480px) {
+  button {
+    width: 100%; /* Full width for small screens */
+    height: auto; /* Let the height adjust based on the content and padding */
+    padding: 12px 24px; /* Increase padding for better touch targets on mobile */
+  }
+}
+
+#total {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+order {
+  border-bottom: 1px solid #ebebeb; /* Adjust the color and thickness as needed */
+  padding-bottom: 20px; /* Some padding to give space between content and border */
+  margin-bottom: 20px; /* Some margin to give space between the border and the next element */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ffffff;
+  width: 300px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This will horizontally center the button */
+  justify-content: center; /* This can vertically center the content if desired */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+.modal-content button {
+  max-width: 100%;
+  box-sizing: border-box; /* This will ensure padding and border are included in width */
+  overflow: hidden; /* This will prevent content spillover */
+}
+
+#paymentModal {
+  font-family: "Verdana", sans-serif;
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+#closeConfirmation {
+  width: 90%; /* Takes up 90% of the container's width */
+  max-width: 300px; /* Prevents it from becoming too wide on larger screens */
+  margin-top: 15px;
+  background-color: #44c767; /* Green color, adjust to your preference */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #16db99;
 }
