@@ -2,11 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Smythe", cursive;
-  background-color: #f5f5f5; /* Added a subtle background color */
+  background-color: #f5f5f5;
 }
 
 h1,
-p {
+p,
+.item h3,
+.item-text {
   margin: 0;
 }
 
@@ -15,17 +17,17 @@ p {
   background: url("./assets/headerBackground.jpg") no-repeat center/cover;
   color: #fff;
   font-weight: bold;
-  border-bottom: 5px solid #333; /* Added border for separation */
+  border-bottom: 5px solid #333;
 }
 
 .header h1 {
   font-size: 48px;
-  margin-top: 20px; /* Gave it a top margin */
+  margin-top: 20px;
 }
 
 .header p {
   font-size: 24px;
-  margin-bottom: 20px; /* Gave it a bottom margin */
+  margin-bottom: 20px;
 }
 
 .header-text {
@@ -46,10 +48,10 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Center the items horizontally */
+  align-items: center;
   background-color: #ffffff;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
 }
 
@@ -57,34 +59,30 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px;
-  width: 80%; /* Set width */
-  border-bottom: 2px solid #ebebeb; /* Added border for separation */
+  padding: 25px 0;
+  width: 80%;
+  border-bottom: 2px solid #ebebeb;
 }
 
 .item:last-child {
-  border-bottom: none; /* Remove border for the last item */
-}
-
-.item h3,
-.item-text {
-  margin: 0;
+  border-bottom: none;
 }
 
 .item-text {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-bottom: 10px; /* Adjust the margin as needed */
 }
 
 .item-name,
 .item-price {
   color: #000;
+  font-size: 24px;
 }
 
 .item-name {
-  font-size: 32px;
-  font-weight: bold; /* Made it bold */
+  font-weight: bold;
 }
 
 .item-ingredients {
@@ -103,11 +101,11 @@ p {
 .add-item {
   font-size: 32px;
   cursor: pointer;
-  transition: color 0.3s; /* Transition effect for hover */
+  transition: color 0.3s;
 }
 
 .add-item:hover {
-  color: #007bff; /* Change color on hover */
+  color: #007bff;
 }
 
 footer {
@@ -126,42 +124,37 @@ footer h1 {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #16db99;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Transition effect for hover */
+  transition: background-color 0.3s;
   width: 475.911px;
   height: 71.304px;
-  flex-shrink: 0;
-  background: #16db99;
-  color: var(--white, #fff);
-  font-family: Verdana, sans-serif; /* Providing a fallback font */
+  font-family: Verdana, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 31.119px; /* 155.596% */
+  line-height: 31.119px;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-/* Responsive styles for medium-sized devices (e.g., tablets) */
 @media (max-width: 768px) {
   button {
-    width: 80%; /* Adjust to 80% width for medium-sized screens */
-    height: auto; /* Let the height adjust based on the content and padding */
+    width: 80%;
+    height: auto;
   }
 }
 
-/* Responsive styles for small-sized devices (e.g., mobile phones) */
 @media (max-width: 480px) {
   button {
-    width: 100%; /* Full width for small screens */
-    height: auto; /* Let the height adjust based on the content and padding */
-    padding: 12px 24px; /* Increase padding for better touch targets on mobile */
+    width: 100%;
+    height: auto;
+    padding: 12px 24px;
   }
 }
 
@@ -174,9 +167,9 @@ button:hover {
 }
 
 order {
-  border-bottom: 1px solid #ebebeb; /* Adjust the color and thickness as needed */
-  padding-bottom: 20px; /* Some padding to give space between content and border */
-  margin-bottom: 20px; /* Some margin to give space between the border and the next element */
+  border-bottom: 1px solid #ebebeb;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .modal {
@@ -200,8 +193,8 @@ order {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  align-items: center; /* This will horizontally center the button */
-  justify-content: center; /* This can vertically center the content if desired */
+  align-items: center;
+  justify-content: center;
 }
 
 input {
@@ -213,8 +206,8 @@ input {
 
 .modal-content button {
   max-width: 100%;
-  box-sizing: border-box; /* This will ensure padding and border are included in width */
-  overflow: hidden; /* This will prevent content spillover */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 #paymentModal {
@@ -228,7 +221,7 @@ input {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  display: none; /* Initially hidden */
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -244,14 +237,13 @@ input {
 }
 
 #closeConfirmation {
-  width: 90%; /* Takes up 90% of the container's width */
-  max-width: 300px; /* Prevents it from becoming too wide on larger screens */
+  width: 90%;
+  max-width: 300px;
   margin-top: 15px;
-  background-color: #44c767; /* Green color, adjust to your preference */
+  background-color: #16db99;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #16db99;
 }

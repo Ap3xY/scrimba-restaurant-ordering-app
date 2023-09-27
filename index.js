@@ -2,6 +2,8 @@ import { menuArray } from "./data.js";
 
 const itemContainer = document.getElementById("item-container");
 const orderContainer = document.getElementById("order");
+const totalElement = document.getElementById("total");
+
 let total = 0; // Initialize total price
 let orderList = {}; // Initialize an object to keep track of ordered items
 
@@ -15,7 +17,7 @@ menuArray.forEach(function (item) {
         <div class="item-text">
             <h3 class="item-name">${item.name}</h3>
             <p class="item-ingredients">${item.ingredients.join(", ")}</p>
-            <p class="item-price">$${item.price}</p>
+            <p class="item-price">$${item.price.toFixed(2)}</p>
         </div>
     </div>
     <i class="add-item fa-solid fa-plus"></i>
@@ -40,7 +42,7 @@ menuArray.forEach(function (item) {
     total += item.price;
 
     // Update the #total div
-    document.getElementById("total").innerText = `Total: $${total.toFixed(2)}`;
+    totalElement.textContent = `Total: $${total.toFixed(2)}`;
   });
 
   itemContainer.appendChild(itemDiv);
@@ -101,7 +103,7 @@ document
 
     // Clear the selected items and total
     orderContainer.innerHTML = "";
-    document.getElementById("total").innerText = "";
+    totalElement.textContent = "";
 
     // Clear the payment modal's input fields
     document.getElementById("name").value = "";
