@@ -1,16 +1,43 @@
-import { menuArray } from "./data.js";
+import { menuArray } from "./data.js"; // Importing menu items from data.js
 
+// Check if menuArray is valid and not empty
+if (!Array.isArray(menuArray) || menuArray.length === 0) {
+  console.error("menuArray is not a valid array or is empty");
+  throw new Error("Invalid menu data");
+}
+
+// Get DOM elements and check if they exist
 const itemContainer = document.getElementById("item-container");
 const orderContainer = document.getElementById("order");
 const totalElement = document.getElementById("total");
 
+if (!itemContainer || !orderContainer || !totalElement) {
+  console.error("One or more required DOM elements are missing");
+  throw new Error("Missing DOM elements");
+}
+
 let total = 0; // Initialize total price
 let orderList = {}; // Initialize an object to keep track of ordered items
 
+// Iterate over menu items and create item elements
 menuArray.forEach(function (item) {
+  // Validate item properties
+  if (
+    !item ||
+    !item.id ||
+    !item.name ||
+    !item.price ||
+    !item.ingredients ||
+    !item.emoji
+  ) {
+    console.warn("Invalid item data:", item);
+    return; // Skip this iteration if item data is invalid
+  }
+
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("item");
 
+  // Set itemDiv innerHTML with item details
   itemDiv.innerHTML = `
     <div class="item-details">
         <p class="emoji">${item.emoji}</p>
@@ -25,6 +52,7 @@ menuArray.forEach(function (item) {
 
   // Add event listener to the "add item" icon
   itemDiv.querySelector(".add-item").addEventListener("click", function () {
+    // Update orderList with selected item
     if (orderList[item.id]) {
       orderList[item.id].quantity += 1; // Increase the quantity count
     } else {
@@ -35,25 +63,23 @@ menuArray.forEach(function (item) {
       };
     }
 
-    // Redraw the order list
-    renderOrderList();
-
-    // Accumulate the total price
-    total += item.price;
-
-    // Update the #total div
-    totalElement.textContent = `Total: $${total.toFixed(2)}`;
+    renderOrderList(); // Redraw the order list
+    total += item.price; // Accumulate the total price
+    totalElement.textContent = `Total: $${total.toFixed(2)}`; // Update the #total div
   });
 
-  itemContainer.appendChild(itemDiv);
+  itemContainer.appendChild(itemDiv); // Append itemDiv to itemContainer
 });
 
+// Function to render the order list
 function renderOrderList() {
   orderContainer.innerHTML = ""; // Clear the existing order list
   for (let itemId in orderList) {
+    // Iterate over orderList items
     const orderedItemDiv = document.createElement("div");
     orderedItemDiv.classList.add("ordered-item");
 
+    // Set orderedItemDiv innerHTML with ordered item details
     orderedItemDiv.innerHTML = `
       <p>${orderList[itemId].name} x ${orderList[itemId].quantity} <a href="#" class="remove-item" data-id="${itemId}">Remove</a></p>
     `;
@@ -63,7 +89,7 @@ function renderOrderList() {
       .querySelector(".remove-item")
       .addEventListener("click", function (event) {
         event.preventDefault(); // Prevent the default action of the link
-        const id = event.target.getAttribute("data-id");
+        const id = event.target.getAttribute("data-id"); // Get item id from data-id attribute
 
         // Decrease the quantity or remove the item from orderList
         if (orderList[id].quantity > 1) {
@@ -74,30 +100,35 @@ function renderOrderList() {
           delete orderList[id];
         }
 
-        // Update the #total div
-        totalElement.textContent = `Total: $${total.toFixed(2)}`;
-
-        // Re-render the order list
-        renderOrderList();
+        totalElement.textContent = `Total: $${total.toFixed(2)}`; // Update the #total div
+        renderOrderList(); // Re-render the order list
       });
 
-    orderContainer.appendChild(orderedItemDiv);
+    orderContainer.appendChild(orderedItemDiv); // Append orderedItemDiv to orderContainer
   }
 }
 
+// Get completeOrderButton, paymentModal, and payButton elements and check if they exist
 const completeOrderButton = document.getElementById("completeOrderButton");
 const paymentModal = document.getElementById("paymentModal");
 const payButton = document.getElementById("payButton");
 
+if (!completeOrderButton || !paymentModal || !payButton) {
+  console.error("One or more required DOM elements are missing");
+  throw new Error("Missing DOM elements");
+}
+
+// Add event listener to completeOrderButton
 completeOrderButton.addEventListener("click", function () {
   if (Object.keys(orderList).length === 0) {
     // Check if orderList is empty
     alert("Please add items to your order before checking out.");
     return;
   }
-  paymentModal.style.display = "block";
+  paymentModal.style.display = "block"; // Show paymentModal
 });
 
+// Add event listener to payButton
 payButton.addEventListener("click", function () {
   // Get all input fields in the modal
   const inputs = paymentModal.querySelectorAll("input");
@@ -111,10 +142,10 @@ payButton.addEventListener("click", function () {
     }
   }
 
-  const userName = document.getElementById("name").value;
+  const userName = document.getElementById("name").value; // Get user name from input field
   document.getElementById(
     "confirmationMessage"
-  ).textContent = `Thank You, ${userName}! Your order is on its way.`;
+  ).textContent = `Thank You, ${userName}! Your order is on its way.`; // Set confirmation message
 
   paymentModal.style.display = "none"; // Hide the payment modal
   document.getElementById("confirmationModal").style.display = "flex"; // Show the confirmation modal
@@ -124,8 +155,7 @@ payButton.addEventListener("click", function () {
 document
   .getElementById("closeConfirmation")
   .addEventListener("click", function () {
-    // Hide the confirmation modal
-    document.getElementById("confirmationModal").style.display = "none";
+    document.getElementById("confirmationModal").style.display = "none"; // Hide the confirmation modal
 
     // Clear the selected items and total
     orderContainer.innerHTML = "";
@@ -144,6 +174,6 @@ document
 // Close modal when clicked outside of modal content
 window.addEventListener("click", function (event) {
   if (event.target === paymentModal) {
-    paymentModal.style.display = "none";
+    paymentModal.style.display = "none"; // Hide paymentModal if clicked outside of modal content
   }
 });
