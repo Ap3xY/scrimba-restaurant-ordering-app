@@ -247,3 +247,16 @@ input {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.remove-item {
+  color: #fff; /* Classic hyperlink blue, adjust as needed */
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px; /* Adjust font size as needed */
+  font-family: "Smythe", cursive; /* Adjust font family as needed */
+}
+
+.remove-item:hover {
+  color: #fff; /* Darker shade of blue on hover, adjust as necessary */
+  text-decoration: none; /* Optional: remove underline on hover for a dynamic effect */
+}

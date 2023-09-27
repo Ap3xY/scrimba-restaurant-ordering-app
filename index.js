@@ -51,11 +51,37 @@ menuArray.forEach(function (item) {
 function renderOrderList() {
   orderContainer.innerHTML = ""; // Clear the existing order list
   for (let itemId in orderList) {
-    orderContainer.innerHTML += `
-          <div class="ordered-item">
-              <p>${orderList[itemId].name} x ${orderList[itemId].quantity}</p>
-          </div>
-      `;
+    const orderedItemDiv = document.createElement("div");
+    orderedItemDiv.classList.add("ordered-item");
+
+    orderedItemDiv.innerHTML = `
+      <p>${orderList[itemId].name} x ${orderList[itemId].quantity} <a href="#" class="remove-item" data-id="${itemId}">Remove</a></p>
+    `;
+
+    // Add event listener to the "remove item" link
+    orderedItemDiv
+      .querySelector(".remove-item")
+      .addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default action of the link
+        const id = event.target.getAttribute("data-id");
+
+        // Decrease the quantity or remove the item from orderList
+        if (orderList[id].quantity > 1) {
+          orderList[id].quantity -= 1;
+          total -= orderList[id].price;
+        } else {
+          total -= orderList[id].price * orderList[id].quantity;
+          delete orderList[id];
+        }
+
+        // Update the #total div
+        totalElement.textContent = `Total: $${total.toFixed(2)}`;
+
+        // Re-render the order list
+        renderOrderList();
+      });
+
+    orderContainer.appendChild(orderedItemDiv);
   }
 }
 
